@@ -72,10 +72,7 @@ namespace BuyIt.Controllers
         [HttpGet("products")] // GET 
         public async Task<IActionResult> GetProducts()
         {
-         
-            
-
-             return Ok();
+             return Ok(_context.Products);
         }
 
          [HttpPost("login")] // POST : /Users/Login

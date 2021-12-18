@@ -5,6 +5,34 @@ $(document).ready(function(){
         $.mobile.changePage("#signupPage",{ transition: "slideup", changeHash: false });
         });
 
+
+        //Not Perfect Yet
+        $("#show").on('click',function(){
+
+            fetch('http://localhost:5000/BuyIt/users/products', {
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => populateList(data));
+        });
+
+        function populateList(items) {
+         items.forEach();
+           
+        }
+
+        function addItem(item) {
+console.log(item.name);
+console.log(item.price);
+    const li = document.createElement('li');
+    li.innerHTML = item.name+item.price;
+    document.getElementById("myUL").appendChild(li);
+    }
+
     $( "#signup" ).submit(function( event ) {
 
         fetch('http://localhost:5000/buyit/users/register', {
@@ -37,7 +65,7 @@ $(document).ready(function(){
 
         })
             .then(response => response.json())
-            .then(data => {
+            .then(data => {     
                 $.mobile.changePage("#productsPage",{ transition: "slideup", changeHash: false });            });
     });
 
