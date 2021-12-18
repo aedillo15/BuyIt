@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     $( "#signup" ).submit(function( event ) {
 
-        fetch('http://localhost:5000/buyit/users', {
+        fetch('http://localhost:5000/buyit/users/register', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -24,11 +24,11 @@ $(document).ready(function(){
  
     $( "#login").submit(function( event ) {
 
-        console.log("I invoked0");
-        fetch('http://localhost:5000/buyit/users', {
-            method: "GET",
+        fetch('http://localhost:5000/buyit/users/login', {
+            method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
                 Email: $("#loginEmail").val(),
@@ -38,8 +38,7 @@ $(document).ready(function(){
         })
             .then(response => response.json())
             .then(data => {
-                $.mobile.changePage("#productsPage",{ transition: "slideup", changeHash: false });
-            });
+                $.mobile.changePage("#productsPage",{ transition: "slideup", changeHash: false });            });
     });
 
  });

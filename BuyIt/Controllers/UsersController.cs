@@ -27,7 +27,7 @@ namespace BuyIt.Controllers
         }
 
         
-        [HttpPost] // POST : /Users/SignUp
+        [HttpPost("register")] // POST : /Users/SignUp
         public async Task<IActionResult> RegisterUser([FromBody] SignUpDto signUpDto)
         {
              if (string.IsNullOrEmpty(signUpDto.Email))
@@ -50,7 +50,7 @@ namespace BuyIt.Controllers
              return Ok();
         }
 
-         [HttpGet] // GET : /Users/Login
+         [HttpPost("login")] // POST : /Users/Login
          public async Task<IActionResult> LoginUser([FromBody] LoginDto loginDto)
          {
                 if (string.IsNullOrEmpty(loginDto.Email))
@@ -62,7 +62,7 @@ namespace BuyIt.Controllers
                                     .SingleOrDefaultAsync(x =>x.Email == loginDto.Email);
 
                 if(user.Password == loginDto.Password){
-                    return Ok();
+                    return Ok(user.Email);
                 }              
                 else{
                     return BadRequest();
