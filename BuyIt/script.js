@@ -67,7 +67,7 @@ $(document).ready(function(){
         })
             .then(response => response.json())
             .then(data => {     
-                showProducts();
+               showProducts();
                 $.mobile.changePage("#productsPage",{ transition: "slideup", changeHash: false });});
             });
 

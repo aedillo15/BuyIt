@@ -93,6 +93,21 @@ namespace BuyIt.Controllers
                     return BadRequest();
                 }      
          }
+
+        [HttpDelete("products/{id}")]
+        //http://localhost:5000/buyit/users/products/{id}
+        public async Task<IActionResult> DeleteProductById(string id){
+
+        var productCheck = await _context.Products.FindAsync(new Guid(id));
+        if(productCheck == null){
+            return BadRequest("Product does not exist");
+        }
+
+        _context.Products.Remove(productCheck);
+        await _context.SaveChangesAsync();
+
+            return Ok("Product Removed");
+        }   
         
     }
 }
