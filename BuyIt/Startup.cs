@@ -1,17 +1,17 @@
-using System.Text;
-using BuyIt.Models.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using BuyIt.Models.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 
 
 namespace BuyIt
@@ -30,31 +30,9 @@ namespace BuyIt
         {
 
             services.AddControllers();
-
-            services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("buyItDatabase"));
-            
             services.AddEntityFrameworkSqlite().AddDbContext<DataContext>();
-            
-            services.AddIdentityCore<AppUser>(options =>
-            {
-                options.Password.RequireNonAlphanumeric = false;
-            })
-            .AddEntityFrameworkStores<DataContext>()
-            .AddSignInManager<SignInManager<AppUser>>();
-
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("This is my super duper key"));
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(opt =>
-            {
-                opt.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = key,
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                };
-            });
+            services.AddControllers().AddJsonOptions(x =>x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+    
 
             services.AddCors(options => {
                 options.AddPolicy("AllowAllPolicy", policy => {
@@ -73,8 +51,6 @@ namespace BuyIt
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                // app.UseSwagger();
-                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BuyIt v1"));
             }
 
             app.UseRouting();
