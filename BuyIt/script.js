@@ -1,7 +1,7 @@
 $(document).ready(function(){ 
 
     //Switch Page from login to signup
-    $("#signUpPageButton").on('click',function(){
+    $("#signup-submit").on('click',function(){
         $.mobile.changePage("#signupPage",{ transition: "slideup", changeHash: false });
         });
 
