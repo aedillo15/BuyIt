@@ -111,7 +111,7 @@ namespace BuyIt.Controllers
 
         [HttpPut("{id}")]
         //http://localhost:5000/buyit/users/products/{id}
-        public async Task<IActionResult> UpdateProductById(string id, ProductDto productDto){
+        public async Task<IActionResult> UpdateProductById(string id,[FromBody] ProductDto productDto){
 
         try
             {

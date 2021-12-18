@@ -56,6 +56,7 @@ namespace BuyIt
 
             app.UseRouting();
             app.UseCors("AllowAllPolicy");
+          
 
             app.UseAuthorization();
 
