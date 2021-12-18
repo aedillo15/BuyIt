@@ -7,10 +7,13 @@ namespace BuyIt.Models.Persistence
 {
     public class DataContext : IdentityDbContext<AppUser>
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlite("FileName=user.db");
+        }
 
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }    }
 }
