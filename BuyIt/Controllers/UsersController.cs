@@ -50,6 +50,34 @@ namespace BuyIt.Controllers
              return Ok();
         }
 
+        [HttpPost("products")] // POST : /Users/SignUp
+        public async Task<IActionResult> AddProducts([FromBody] ProductDto productDto)
+        {
+             if (string.IsNullOrEmpty(productDto.Name))
+                return BadRequest();   
+            else if (string.IsNullOrEmpty(productDto.Price))
+                return BadRequest();    
+
+                 var product = new Product{
+                     Name = productDto.Name,
+                     Price = productDto.Price
+                };
+
+
+              await _context.Products.AddAsync(product);
+             await _context.SaveChangesAsync();
+
+             return Ok();
+        }
+        [HttpGet("products")] // GET 
+        public async Task<IActionResult> GetProducts()
+        {
+         
+            
+
+             return Ok();
+        }
+
          [HttpPost("login")] // POST : /Users/Login
          public async Task<IActionResult> LoginUser([FromBody] LoginDto loginDto)
          {
