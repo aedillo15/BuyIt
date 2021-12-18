@@ -34,7 +34,7 @@ namespace BuyIt
             services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("buyItDatabase"));
             
             services.AddEntityFrameworkSqlite().AddDbContext<DataContext>();
-            services.AddScoped<DbContext, SchoolContext>();
+            
             services.AddIdentityCore<AppUser>(options =>
             {
                 options.Password.RequireNonAlphanumeric = false;

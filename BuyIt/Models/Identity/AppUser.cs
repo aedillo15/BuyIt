@@ -10,7 +10,8 @@ namespace BuyIt.Models.Identity
 
     public class AppUser : IdentityUser
     {
-
+        public Guid Id { get; set; }
+        public string Email { get; set; }
         public List<Product> Products = new List<Product>();
         
     }
