@@ -33,18 +33,18 @@
 
       <div data-role="main" class="ui-content" id="bimg">
         <center>
-          <form id="login" method="post">
+          <form id="login">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="mb-3">
               <div class="form-group">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" aria-describedby="emailHelp">
+                <input type="email" id="loginEmail" class="form-control" aria-describedby="emailHelp">
               </div>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" >
+              <input type="password" id="loginPassword" class="form-control" >
             </div>
 
             <button type="submit" class="btn btn-primary" id="login-submit">Login</button>
@@ -80,6 +80,15 @@
 
   </div>
 
+    <!-- Products Page -->
+    <div data-role="page" id="productsPage">
+      <div role="main" class="ui-content">
+        <center>
+    <h1>Products</h1>
+        </center>
+      </div>
+  
+    </div>
        
  
 </body>

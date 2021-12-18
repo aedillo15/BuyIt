@@ -20,10 +20,27 @@ $(document).ready(function(){
 
         })
             .then(response => response.json())
-      
-
-
     });
  
+    $( "#login").submit(function( event ) {
+
+        console.log("I invoked0");
+        fetch('http://localhost:5000/buyit/users', {
+            method: "GET",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                Email: $("#loginEmail").val(),
+                Password: $("#loginPassword").val()
+            })
+
+        })
+            .then(response => response.json())
+            .then(data => {
+                $.mobile.changePage("#productsPage",{ transition: "slideup", changeHash: false });
+            });
+    });
+
  });
 
