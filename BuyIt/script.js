@@ -21,15 +21,15 @@ $(document).ready(function(){
         });
 
         function populateList(items) {
-         items.forEach();
-           
+            items.$values.forEach(item => addItem(item));
+            //console.log(items.$values[0])           
         }
 
         function addItem(item) {
 console.log(item.name);
 console.log(item.price);
     const li = document.createElement('li');
-    li.innerHTML = item.name+item.price;
+    li.innerHTML = item.name+" "+item.price;
     document.getElementById("myUL").appendChild(li);
     }
 
