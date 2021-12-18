@@ -132,5 +132,26 @@ namespace BuyIt.Controllers
 
         }   
         
+        //This will be usefull when user wants to add products to the cart and that cart should be specific to that user only
+         [HttpPost("userproduct/{id}")] // POST 
+         public async Task<IActionResult> AddProductToUser(string id,[FromBody] ProductDto productDto)
+         {
+
+                var user = await _context.Users
+                                    .Include(x=>x.Products)
+                                    .SingleOrDefaultAsync(x =>x.Id == new Guid(id));
+
+  
+            var product = new Product{
+                Name = productDto.Name,
+                Price = productDto.Price
+            };
+
+            user.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return Ok();
+         }
+
+
     }
 }
