@@ -52,6 +52,7 @@ namespace BuyIt
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors("AllowAllPolicy");

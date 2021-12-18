@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BuyIt.Controllers
 {
-    [Route("BuyIt/[controller]")]
+    [Route("buyit/[controller]")]
     public class UsersController : ControllerBase
     {
         //todo: inject the userContext
@@ -27,12 +27,25 @@ namespace BuyIt.Controllers
         }
 
         
-        // [HttpPost("SignUp")] // POST : /Users/SignUp
-        // public async Task<IActionResult> Post([FromBody] SignUpDto signUpDto)
-        // {
+        [HttpPost] // POST : /Users/SignUp
+        public async Task<IActionResult> RegisterUser([FromBody] SignUpDto signUpDto)
+        {
             
-        //     return("hello");
-        // }
+             if (string.IsNullOrEmpty(signUpDto.Email))
+                return BadRequest();
+
+                 var user = new User{
+                     Email = signUpDto.Email,
+                     Name = signUpDto.UserName,
+                     Password = signUpDto.Password
+                };
+
+
+              await _context.Users.AddAsync(user);
+             await _context.SaveChangesAsync();
+
+             return Ok();
+        }
 
         // [HttpPost("Login")] // GET : /Users/Login
         // public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
