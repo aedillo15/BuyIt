@@ -30,9 +30,12 @@ namespace BuyIt.Controllers
         [HttpPost] // POST : /Users/SignUp
         public async Task<IActionResult> RegisterUser([FromBody] SignUpDto signUpDto)
         {
-            
              if (string.IsNullOrEmpty(signUpDto.Email))
-                return BadRequest();
+                return BadRequest();   
+            else if (string.IsNullOrEmpty(signUpDto.Password))
+                return BadRequest();   
+            else if (string.IsNullOrEmpty(signUpDto.UserName))
+                return BadRequest();   
 
                  var user = new User{
                      Email = signUpDto.Email,
@@ -47,11 +50,24 @@ namespace BuyIt.Controllers
              return Ok();
         }
 
-        // [HttpPost("Login")] // GET : /Users/Login
-        // public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
-        // {
-        //     return("hello");
-        // }
+         [HttpGet] // GET : /Users/Login
+         public async Task<IActionResult> LoginUser([FromBody] LoginDto loginDto)
+         {
+                if (string.IsNullOrEmpty(loginDto.Email))
+                return BadRequest();
+                else if (string.IsNullOrEmpty(loginDto.Password))
+                return BadRequest();
+
+                var user = await _context.Users
+                                    .SingleOrDefaultAsync(x =>x.Email == loginDto.Email);
+
+                if(user.Password == loginDto.Password){
+                    return Ok();
+                }              
+                else{
+                    return BadRequest();
+                }      
+         }
         
     }
 }
