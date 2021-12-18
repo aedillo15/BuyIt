@@ -11,6 +11,6 @@ namespace BuyIt.Models.Persistence
         {
 
         }
-        public override DbSet<AppUser> Users { get; set; }
-    }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }    }
 }
