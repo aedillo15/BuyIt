@@ -1,10 +1,10 @@
 using System.Text;
-using API.Models.Identity;
-using API.Models.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using BuyIt.Models.Identity;
+using BuyIt.Models.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,9 +30,9 @@ namespace BuyIt
 
             services.AddControllers();
 
-            services.AddDbContext<UserContext>(options => options.UseInMemoryDatabase("buyItDatabase"));
+            services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("buyItDatabase"));
             
-            service.AddCors(options => {
+            services.AddCors(options => {
                 options.AddPolicy("AllowAllPolicy", policy => {
                     policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
                 });
@@ -54,7 +54,7 @@ namespace BuyIt
             }
 
             app.UseRouting();
-            app.UseCor("AllowAllPolicy");
+            app.UseCors("AllowAllPolicy");
 
             app.UseAuthorization();
 

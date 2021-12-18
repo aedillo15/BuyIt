@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BuyIt.Models;
+using BuyIt.Models.DTO;
 //using BuyIt.Models.DTOs;
-using BuyIt.Models;
+using BuyIt.Models.Entities;
+using BuyIt.Models.Responses;
 //using API.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace BuyIt.Controllers
+namespace BuyIt.Entities.Controllers
 {
     [Route("BuyIt/[controller]")]
     public class UsersController : ControllerBase
@@ -39,20 +41,19 @@ namespace BuyIt.Controllers
         {
             try
             {
-                var user = await _context.Persons.FindAsync();
+                var user = await _context.users.FindAsync();
                 // var list = new List<Person>();
                 // var response = 
 
                 if (user == null)
                     return NotFound();
-                var userDto = new UserDTO
+                var personDto = new PersonDto
                 {
-                    Id = person.Id,
-                    Email = person.Email,
-                    Password = person.Password
+                    Id = user.Id,
+                    Email = user.Email
                 };
 
-                return Ok(new Response<UserDTO>(userDto));
+                return Ok(new Response<PersonDto>(personDto));
             }
             catch (System.Exception)
             {

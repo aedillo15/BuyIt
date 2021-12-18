@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BuyIt.Models
+namespace BuyIt.Models.Entities
 {
-    public class Product
+public class Product
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

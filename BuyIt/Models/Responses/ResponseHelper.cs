@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Models.Entities;
+using BuyIt.Models;
 
-namespace API.Models.Responses
+namespace BuyIt.Models.Responses
 {
     public static class ResponseHelper<T>
     {

@@ -1,4 +1,5 @@
 using BuyIt.Models;
+using BuyIt.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
