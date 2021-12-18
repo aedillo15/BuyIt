@@ -1,0 +1,7 @@
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.csproj.AssemblyReference.cache
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.AssemblyInfoInputs.cache
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.AssemblyInfo.cs
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.csproj.CoreCompileInputs.cache
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.MvcApplicationPartsAssemblyInfo.cache
