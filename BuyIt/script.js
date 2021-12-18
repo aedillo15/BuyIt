@@ -6,9 +6,7 @@ $(document).ready(function(){
         });
 
 
-        //Not Perfect Yet
-        $("#show").on('click',function(){
-
+         function showProducts(){
             fetch('http://localhost:5000/BuyIt/users/products', {
                 method: "GET",
                 headers: {
@@ -18,7 +16,7 @@ $(document).ready(function(){
             })
                 .then(response => response.json())
                 .then(data => populateList(data));
-        });
+        }
 
         function populateList(items) {
             items.$values.forEach(item => addItem(item));
@@ -26,10 +24,13 @@ $(document).ready(function(){
         }
 
         function addItem(item) {
-console.log(item.name);
-console.log(item.price);
     const li = document.createElement('li');
+    const addButton = document.createElement('button');
+    addButton.innerText = 'Add';
+    addButton.id = item.id;
     li.innerHTML = item.name+" "+item.price;
+    li.appendChild(addButton);
+
     document.getElementById("myUL").appendChild(li);
     }
 
@@ -66,8 +67,9 @@ console.log(item.price);
         })
             .then(response => response.json())
             .then(data => {     
-                $.mobile.changePage("#productsPage",{ transition: "slideup", changeHash: false });            });
-    });
+                showProducts();
+                $.mobile.changePage("#productsPage",{ transition: "slideup", changeHash: false });});
+            });
 
  });
 
