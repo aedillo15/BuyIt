@@ -108,6 +108,29 @@ namespace BuyIt.Controllers
 
             return Ok("Product Removed");
         }   
+
+        [HttpPut("{id}")]
+        //http://localhost:5000/buyit/users/products/{id}
+        public async Task<IActionResult> UpdateProductById(string id, ProductDto productDto){
+
+        try
+            {
+                var itemInDb = await _context.Products.FindAsync(new Guid(id));
+                if (itemInDb == null)
+                    return NotFound();
+
+                itemInDb.Name = productDto.Name;
+                itemInDb.Price = productDto.Price;
+
+                await _context.SaveChangesAsync();
+                return Ok(itemInDb);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+
+        }   
         
     }
 }
