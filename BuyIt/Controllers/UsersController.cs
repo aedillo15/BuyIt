@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace BuyIt.Entities.Controllers
+namespace BuyIt.Controllers
 {
     [Route("BuyIt/[controller]")]
     public class UsersController : ControllerBase

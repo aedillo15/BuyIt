@@ -7,10 +7,12 @@ namespace BuyIt.Models.Persistence
 {
     public class DataContext : IdentityDbContext<AppUser>
     {
+        public override DbSet<User> Users { get; set; }
+        public override DbSet<Product> Products { get; set; }
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
-        public override DbSet<AppUser> Users { get; set; }
+        
     }
 }
