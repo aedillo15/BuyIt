@@ -6,35 +6,24 @@ $(document).ready(function(){
         });
 
     $( "#signup" ).submit(function( event ) {
-       
-      
 
-        fetch('http://localhost:5000/api/Register', {
+        fetch('http://localhost:5000/buyit/users', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify({
-                name: $("#name").val(),
-                email: $("#email").val(),
-                password: $("#password").val()
+                UserName: $("#username").val(),
+                Email: $("#email").val(),
+                Password: $("#password").val()
             })
 
         })
             .then(response => response.json())
-           // .then(data => registerUser(data));
+      
 
 
     });
-
-
-
-
- //   function registerUser(item) {
-
-  //      console.log(item);
-
-  //  }
  
  });
 
