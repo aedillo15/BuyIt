@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BuyIt.Models.Entities;
 using BuyIt.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,11 +7,10 @@ namespace BuyIt.Models.Persistence
 {
     public class DataContext : IdentityDbContext<AppUser>
     {
-        public DbSet<User> Users { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            optionsBuilder.UseSqlite("FileName=users.db");
+
         }
-        
+        public override DbSet<AppUser> Users { get; set; }
     }
 }

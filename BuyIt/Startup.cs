@@ -1,6 +1,7 @@
 using System.Text;
 using BuyIt.Models.Identity;
 using BuyIt.Models.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -32,6 +33,29 @@ namespace BuyIt
 
             services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("buyItDatabase"));
             
+            services.AddEntityFrameworkSqlite().AddDbContext<DataContext>();
+            services.AddScoped<DbContext, SchoolContext>();
+            services.AddIdentityCore<AppUser>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<DataContext>()
+            .AddSignInManager<SignInManager<AppUser>>();
+
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("This is my super duper key"));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = key,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                };
+            });
+
             services.AddCors(options => {
                 options.AddPolicy("AllowAllPolicy", policy => {
                     policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();

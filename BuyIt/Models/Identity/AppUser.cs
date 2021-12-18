@@ -11,6 +11,7 @@ namespace BuyIt.Models.Identity
     public class AppUser : IdentityUser
     {
 
-
+        public List<Product> Products = new List<Product>();
+        
     }
 }

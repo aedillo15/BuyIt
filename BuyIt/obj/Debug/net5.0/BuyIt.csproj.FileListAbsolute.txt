@@ -40,7 +40,6 @@ C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\Microsof
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\SQLitePCLRaw.core.dll
@@ -87,3 +86,4 @@ C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.dl
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\ref\BuyIt.dll
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.pdb
 C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\obj\Debug\net5.0\BuyIt.genruntimeconfig.cache
+C:\Users\Arzen Edillo\Desktop\BuyIt-Phase1\BuyIt\BuyIt\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

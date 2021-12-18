@@ -5,10 +5,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BuyIt.Models;
 using BuyIt.Models.DTO;
-//using BuyIt.Models.DTOs;
 using BuyIt.Models.Entities;
+using BuyIt.Models.Identity;
+using BuyIt.Models.Persistence;
 using BuyIt.Models.Responses;
-//using API.Models.Responses;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,56 +19,58 @@ namespace BuyIt.Entities.Controllers
     [Route("BuyIt/[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly UserContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly TokenService _tokenService;
         //todo: inject the userContext
-        public UsersController(UserContext context)
-        {
-            _context = context;
-        }
+        public UsersController(
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
+            TokenService tokenService
 
-        [HttpPost] 
-        public async Task<IActionResult> CreateUser (User user)
+            )
         {
-            await _context.users.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return Ok(user);
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _tokenService = tokenService;
         }
-
-        //GET /BuyIt/Users/{id}
-        [HttpGet("{id}")]
-        // [Route("{id}")]
-        // [Route("getPerson/{id}")]
-        public async Task<IActionResult> GetUser(string emailAddress, string password)
+        
+        [HttpPost("SignUp")] // POST : /Users/SignUp
+        public async Task<IActionResult> Post([FromBody] SignUpDto signUpDto)
         {
-            try
+            var result = await _userManager.CreateAsync(new AppUser
             {
-                var user = await _context.users.FindAsync();
-                // var list = new List<Person>();
-                // var response = 
+                Email = signUpDto.Email,
+                UserName = signUpDto.UserName
+            }, signUpDto.Password);
 
-                if (user == null)
-                    return NotFound();
-                var personDto = new PersonDto
-                {
-                    Id = user.Id,
-                    Email = user.Email
-                };
+            if (result.Succeeded)
+                return Ok();
 
-                return Ok(new Response<PersonDto>(personDto));
-            }
-            catch (System.Exception)
-            {
-                return BadRequest();
-            }
+            return BadRequest(result.Errors);
+
         }
 
-        //POST : /BuyIt/
-        [HttpPost]
-        public async Task<IActionResult> PostArray([FromBody] User[] data)
+        [HttpPost("Login")] // GET : /Users/Login
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            await _context.users.AddRangeAsync(data);
-            await _context.SaveChangesAsync();
-            return Ok();
+            var user = await _userManager.FindByEmailAsync(loginDto.Email);
+            if (user == null)
+                return Unauthorized();
+
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+
+            if (!result.Succeeded)
+                return Unauthorized();
+
+            return Ok(new UserDto
+            {
+                Token = _tokenService.CreateToken(user)
+            });
+
         }
+        
     }
 }
